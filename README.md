@@ -41,6 +41,17 @@ Use Mercury to easily include SVG paths as background images. Here's a simple ex
   background: svg-url(my_circle) center no-repeat
 ```
 
+`svg-url` takes two optional arguments: `$fill` and `$rendering`. They can either be named, or passed in that order.
+
+`$fill` wraps your path in a `<g>` with a `fill` color:
+
+```
+.foo
+  background: svg-url(my_circle, #ff0000) center no-repeat
+```
+
+`$rendering` lets you override the default rendering, which is `geometricPrecision`.
+
 You can then resize the background using `background-size` and otherwise treat it just like a normal background image.
 
 ## Other Utilities
