@@ -43,6 +43,11 @@ Use Mercury to easily include SVG paths as background images. Here's a simple ex
 
 You can then resize the background using `background-size` and otherwise treat it just like a normal background image.
 
-## Clearfix
+## Other Utilities
 
-There's a clearfix.
+Mercury includes a couple of common utility mixins:
+
+```
++clearfix
++hide-text
+```
