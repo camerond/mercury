@@ -28,7 +28,7 @@ Hiding/showing elements for printing comes up fairly often; use `+print` and `+h
 
 ## SVG Background Support
 
-Use Mercury to easily include SVG paths as background images. Here's a simple example using a 20x20 circle. Just register your SVG path:
+Use Mercury to easily include SVG paths as background images. Here's a simple example using a 20x20 circle. Just register your SVG path with a name, viewBox width, viewBox height, and path data:
 
 ```
 +register-svg(my_circle, 20, 20, "<circle cx='10' cy='10' r='10' />")
