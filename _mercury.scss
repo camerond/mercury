@@ -1,5 +1,5 @@
 // Mercury.scss
-// version 0.1
+// version 0.1.1
 // github.com/hashrocket/mercury
 
 // Options
@@ -137,3 +137,10 @@ $svg-images: () !global;
   }
 }
 
+// Hide Text
+
+@mixin hide-text {
+  overflow: hidden;
+  text-indent: 101%;
+  white-space: nowrap;
+}
