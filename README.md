@@ -4,7 +4,13 @@ Mercury is a set of assorted Sass mixins used in Hashrocket projects.
 
 ## Responsive Mixins
 
-Mercury's responsive mixins use 3 viewport breakpoints, set by the variables `$site-width-max`, `-mid` and `-narrow`. They're `!default`, so you can override them from outside the file at will. They default to 1400, 800 and 480px, respectively.
+Mercury's responsive mixins use up to 5 viewport breakpoints:
+
+- `$site-width-max: 1400px`
+- `$site-width-mid: 800px;`
+- `$site-width-narrow: 480px;`
+
+They're `!default`, so you can override them from outside the file at will.
 
 ### `tablet`, `mobile` and `max`
 
@@ -32,7 +38,7 @@ Save typing time & readability by using `tablet` and `mobile` mixins, which rely
 
 ### `responsive`
 
-Inject a bunch of responsive styles in one line of code by using the `responsive` mixin, ` which is detailed [in this post over at the Hashrocket blog](http://hashrocket.com/blog/posts/drop-in-responsive-styles-with-sass).
+Inject a bunch of responsive styles in one line of code by using the `responsive` mixin, which is detailed [in this post over at the Hashrocket blog](http://hashrocket.com/blog/posts/drop-in-responsive-styles-with-sass).
 
 ```scss
 // font size will be 20px default, 14px for narrower than `$site-width-mid`,
@@ -74,6 +80,15 @@ The `max-vw` mixin does a bit of quick math for you: using the `max` mixin (deta
   // the margin value will cap out at 10% of $site-width-max (140px).
 }
 ```
+
+## Including Viewport Height
+
+If you set `$scaleToViewportHeight` to `true`, Mercury's responsive mixins will also take viewport height into consideration. These values, by default, are:
+
+- `$site-height-mid: 800px`
+- `$site-height-short: 480px;`
+
+For example, `@include tablet` will trigger at a viewport width less than `$site-width-mid` OR a viewport height less than `$site-width-height`.
 
 ## Print Mixins
 

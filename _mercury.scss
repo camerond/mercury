@@ -1,5 +1,5 @@
 // Mercury.scss
-// version 0.1.4
+// version 0.1.5
 // github.com/camerond/mercury
 
 // Options
@@ -8,36 +8,53 @@ $site-width-max: 1400px !default;
 $site-width-mid: 800px !default;
 $site-width-narrow: 480px !default;
 
+$site-height-mid: 800px !default;
+$site-height-short: 480px !default;
+
+$scaleToViewportHeight: false !default;
+
 $svg-rendering: 'geometricPrecision' !default;
 
 // Responsive mixins
 
-@mixin min-width($width) {
-  @media screen and (min-width: #{$width}) {
+@mixin media($minOrMax, $width, $height) {
+  @if ($scaleToViewportHeight != false) {
+    @media screen and (#{$minOrMax}-width: #{$width}), (#{$minOrMax}-height: #{$height}) {
+      @content;
+    }
+  } @else {
+    @media screen and (#{$minOrMax}-width: #{$width}) {
+      @content;
+    }
+  }
+}
+
+@mixin min-width($width, $height) {
+  @include media(min, $width, $height) {
     @content;
   }
 }
 
-@mixin max-width($width) {
-  @media screen and (max-width: #{$width}) {
+@mixin max-width($width, $height) {
+  @include media(max, $width, $height) {
     @content;
   }
 }
 
 @mixin tablet {
-  @include max-width($site-width-mid) {
+  @include max-width($site-width-mid, $site-height-mid) {
     @content;
   }
 }
 
 @mixin mobile {
-  @include max-width($site-width-narrow) {
+  @include max-width($site-width-narrow, $site-height-short) {
     @content;
   }
 }
 
 @mixin max {
-  @include min-width($site-width-max) {
+  @include max-width($site-width-max) {
     @content;
   }
 }
@@ -51,12 +68,12 @@ $svg-rendering: 'geometricPrecision' !default;
 @mixin responsive($attr, $full, $mid:false, $narrow:false) {
   #{$attr}: #{$full};
   @if $mid {
-    @include max-width($site-width-mid) {
+    @include tablet {
       #{$attr}: #{$mid};
     }
   }
   @if $narrow {
-    @include max-width($site-width-narrow) {
+    @include mobile {
       #{$attr}: #{$narrow};
     }
   }
